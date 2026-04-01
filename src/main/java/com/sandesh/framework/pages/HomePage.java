@@ -16,19 +16,26 @@ public class HomePage {
     }
 
     public void enterSearchText(String text) {
-        WaitUtils.waitForElementVisible(driver, searchBox).sendKeys(text);
+        WaitUtils
+                .waitForVisibility(searchBox)
+                .sendKeys(text);
     }
 
     public void clickSearch() {
-        WaitUtils.waitForElementVisible(driver, searchButton).click();
+        WaitUtils
+                .waitForVisibility(searchButton)
+                .click();
     }
 
     public int getSearchResultsCount() {
-        WaitUtils.waitForElementVisible(driver, productItems);
-        return driver.findElements(productItems).size();
+        WaitUtils.waitForVisibility(productItems);
+        return driver
+                .findElements(productItems)
+                .size();
     }
 
     public String getPageTitle() {
         return driver.getTitle();
     }
+
 }

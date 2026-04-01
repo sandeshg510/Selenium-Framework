@@ -1,25 +1,37 @@
 package com.sandesh.framework.base;
 
+import com.sandesh.framework.utils.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
+
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static void initDriver(String browser) {
-        if ("chrome".equalsIgnoreCase(browser)) {
-            WebDriverManager.chromedriver().setup();
-            driver.set(new ChromeDriver());
-        } else if ("firefox".equalsIgnoreCase(browser)) {
-            WebDriverManager.firefoxdriver().setup();
-            driver.set(new FirefoxDriver());
-        } else {
-            throw new RuntimeException("Unsupported browser: " + browser);
+    private DriverFactory() {
+    }
+
+    public static void initDriver() {
+        String browser = ConfigReader.get("browser");
+
+        switch (browser) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver.set(new ChromeDriver());
+                break;
+
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver.set(new FirefoxDriver());
+                break;
+
+            default:
+                throw new RuntimeException("Unsupported browser: " + browser);
         }
 
-        driver.get().manage().window().maximize();
+        getDriver().manage().window().maximize();
     }
 
     public static WebDriver getDriver() {
@@ -27,9 +39,9 @@ public class DriverFactory {
     }
 
     public static void quitDriver() {
-        if (driver.get() != null) {
-            driver.get().quit();
-            driver.remove();
-        }
+
+        driver.get().quit();
+        driver.remove();
     }
+
 }
