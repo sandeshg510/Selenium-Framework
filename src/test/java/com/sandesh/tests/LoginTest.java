@@ -1,6 +1,5 @@
 package com.sandesh.tests;
 
-import com.sandesh.framework.base.DriverFactory;
 import com.sandesh.framework.pages.LoginPage;
 import com.sandesh.tests.listeners.RetryAnalyzer;
 import com.sandesh.tests.listeners.TestListener;
@@ -20,11 +19,7 @@ public class LoginTest extends BaseTest {
 
         loginPage.login(username, password);
 
-        String currentUrl = DriverFactory
-                .getDriver()
-                .getCurrentUrl();
-
-        Assert.assertTrue(currentUrl.contains("inventory"),
+        Assert.assertTrue(loginPage.isLoginSuccessful(),
                           "Login failed for user: " + username);
     }
 
