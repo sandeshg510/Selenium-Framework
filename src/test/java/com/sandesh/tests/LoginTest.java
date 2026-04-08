@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
         loginPage.login(username, password);
 
         Assert.assertTrue(loginPage.isLoginSuccessful(),
-                          "Login failed for user: " + username);
+                          "Login failed for given user: " + username);
     }
 
 }
