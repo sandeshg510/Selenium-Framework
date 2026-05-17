@@ -11,7 +11,8 @@ public class LoginPage extends BasePage {
 
     private final By usernameField = By.id("Email");
     private final By passwordField = By.id("Password");
-    private final By loginButton = By.className("button-1 login-button");
+    private final By loginButton = By.xpath("//button[text()='Log in']");
+    private final By logoutButton = By.linkText("Log out");
 
     @Step("Enter Username: {0}")
     public LoginPage enterUsername(String username) {
@@ -39,8 +40,12 @@ public class LoginPage extends BasePage {
                 .clickLogin();
     }
 
+    public boolean isLogoutDisplayed() {
+        return find(logoutButton).isDisplayed();
+    }
+
     public boolean isLoginSuccessful() {
-        return getCurrentUrl().contains("inventory");
+        return isLogoutDisplayed();
     }
 
 }

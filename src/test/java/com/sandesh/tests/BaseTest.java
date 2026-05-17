@@ -11,8 +11,9 @@ public class BaseTest {
     @BeforeMethod
     @Parameters("browser")
     public void setUp(String browser) {
-        DriverFactory.initDriver();
-        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+        DriverFactory.initDriver(browser);
+        DriverFactory.getDriver()
+                     .get(ConfigReader.get("baseUrl"));
     }
 
     @AfterMethod

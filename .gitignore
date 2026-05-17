@@ -37,3 +37,20 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Automation Reports
+allure-results/
+allure-report/
+test-output/
+reports/
+screenshots/
+
+# Logs
+*.log
+logs/
+
+# Selenium Drivers (if local binaries ever added)
+drivers/
+
+# Environment files
+.env

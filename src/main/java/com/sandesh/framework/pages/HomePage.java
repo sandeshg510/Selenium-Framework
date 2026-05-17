@@ -1,41 +1,23 @@
 package com.sandesh.framework.pages;
 
-import com.sandesh.framework.utils.WaitUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class HomePage {
+public class HomePage extends BasePage {
 
-    private WebDriver driver;
-    private By searchBox = By.id("small-searchterms");
-    private By searchButton = By.cssSelector("button[type='submit']");
-    private By productItems = By.cssSelector(".product-grid");
+    private By myAccountDropdown = By.linkText("My Account");
+    private By registerButton = By.linkText("Register");
+    private By loginButton = By.linkText("Login");
 
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
+    public void clickMyAccount() {
+        click(myAccountDropdown);
     }
 
-    public void enterSearchText(String text) {
-        WaitUtils
-                .waitForVisibility(searchBox)
-                .sendKeys(text);
+    public void clickRegisterButton() {
+        click(registerButton);
     }
 
-    public void clickSearch() {
-        WaitUtils
-                .waitForVisibility(searchButton)
-                .click();
-    }
-
-    public int getSearchResultsCount() {
-        WaitUtils.waitForVisibility(productItems);
-        return driver
-                .findElements(productItems)
-                .size();
-    }
-
-    public String getPageTitle() {
-        return driver.getTitle();
+    public void clickLoginButton() {
+        click(loginButton);
     }
 
 }
