@@ -16,6 +16,10 @@ public class OptionsManager {
         if (Boolean.parseBoolean(ConfigReader.get("headless"))) {
             options.addArguments("--headless=new");
         }
+
+        // Required for Docker/Linux/Jenkins execution
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         return options;
     }
 
