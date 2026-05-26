@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class RegisterTest extends BaseTest {
 
     @Test
-    void verifyRegisterByProvidingAllFields() throws InterruptedException {
+    void verifyRegisterByProvidingRegisteredEmailFields() throws InterruptedException {
         HomePage homePage = new HomePage();
         homePage.clickMyAccount();
         homePage.clickRegisterButton();
@@ -24,10 +24,6 @@ public class RegisterTest extends BaseTest {
         AccountSuccessPage successPage = new AccountSuccessPage();
         Assert.assertTrue(successPage.getSuccessText()
                                      .contains("Your Account Has Been Created!"));
-    }
-
-    void verifyRegisterByProvidingOnlyRequiredFields() {
-
     }
 
 }
