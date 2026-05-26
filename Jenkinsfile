@@ -8,12 +8,6 @@ pipeline{
 
     stages{
 
-        stage('Checkout'){
-            steps{
-                git 'https://github.com/sandeshg510/Selenium-Framework.git'
-            }
-        }
-
         stage('Run Tests'){
              steps{
              sh 'mvn clean test'
